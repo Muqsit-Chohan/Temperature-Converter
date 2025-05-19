@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+</head>
+<body>
+
+
+<script>
+function convertTemperature(value, unit) {
+  let celsius, fahrenheit, kelvin;
+
+  switch (unit.toLowerCase()) {
+    case 'celsius':
+      celsius = value;
+      fahrenheit = (value * 9/5) + 32;
+      kelvin = value + 273.15;
+      break;
+
+    case 'fahrenheit':
+      celsius = (value - 32) * 5/9;
+      fahrenheit = value;
+      kelvin = celsius + 273.15;
+      break;
+
+    case 'kelvin':
+      celsius = value - 273.15;
+      fahrenheit = (celsius * 9/5) + 32;
+      kelvin = value;
+      break;
+
+    default:
+      return "Invalid unit. Please use 'Celsius', 'Fahrenheit', or 'Kelvin'.";
+  }
+
+  return {
+    Celsius: celsius.toFixed(2),
+    Fahrenheit: fahrenheit.toFixed(2),
+    Kelvin: kelvin.toFixed(2)
+  };
+}
+
+let userUnit = prompt("Enter the unit (Celsius, Fahrenheit, or Kelvin):");
+let userValue = parseFloat(prompt("Enter the temperature value:"));
+
+let result = convertTemperature(userValue, userUnit);
+if (typeof result === "string") {
+  alert(result);
+} else {
+
+  alert(
+    `Converted Temperatures:\n` +
+    `Celsius: ${result.Celsius}°C\n` +
+    `Fahrenheit: ${result.Fahrenheit}°F\n` +
+    `Kelvin: ${result.Kelvin}K`
+  );
+}
+
+</script>
+</body>
+</html>
